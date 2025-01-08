@@ -138,7 +138,7 @@ export default function SkillDashboard() {
         </div>
         <div className="flex-1 bg-gray-50 min-h-screen">
           <div className="p-4 md:p-6">
-            <h1 className="text-xl text-gray-800 font-medium mb-6">Skill Test</h1>
+            <h1 className="text-xl text-gray-800 font-bold mb-6">Skill Test</h1>
             
             <div className="grid lg:grid-cols-[1fr,320px] gap-6">
               <div>
@@ -161,7 +161,7 @@ export default function SkillDashboard() {
                 </div>
                 <div className="bg-white rounded-lg border mb-6">
                   <div className="p-4 md:p-5">
-                    <h3 className="text-lg font-medium mb-4">Quick Statistics</h3>
+                    <h3 className="text-lg font-bold mb-4">Quick Statistics</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8">
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center">
@@ -195,7 +195,7 @@ export default function SkillDashboard() {
                 </div>
                 <div className="bg-white rounded-lg border">
                   <div className="p-4 md:p-5">
-                    <h3 className="text-lg font-medium mb-2">Comparison Graph</h3>
+                    <h3 className="text-lg font-bold mb-2">Comparison Graph</h3>
                     <p className="text-gray-600 mb-6">
                       You scored {formData.percentile}% percentile which is lower than the average percentile 72% 
                       of all the engineers who took this assessment
@@ -281,7 +281,7 @@ export default function SkillDashboard() {
               <div className="space-y-6">
                 <div className="bg-white rounded-lg border p-4 md:p-5">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-lg font-medium">Syllabus Wise Analysis</h3>
+                    <h3 className="text-lg font-bold">Syllabus Wise Analysis</h3>
                     <span className="text-blue-600 font-medium">{formData.currentScore}/15</span>
                   </div>
                   <div className="space-y-6">
@@ -309,7 +309,7 @@ export default function SkillDashboard() {
                 </div>
                 <div className="bg-white rounded-lg border p-4 md:p-5">
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-lg font-medium">Question Analysis</h3>
+                    <h3 className="text-lg font-bold">Question Analysis</h3>
                     <span className="text-blue-600 font-medium">{formData.currentScore}/15</span>
                   </div>
                   <p className="text-gray-600 mb-6">
