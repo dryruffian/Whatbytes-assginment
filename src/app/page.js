@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,ReferenceLine  } from 'recharts';
 import { BarChart, Layout, Award, Menu, X, Trophy, FileText, CheckCircle, User } from 'lucide-react';
 import Image from 'next/image';
 import SidebarLink from '@/components/SidebarLink'
@@ -206,16 +206,71 @@ export default function SkillDashboard() {
                           data={distributionData}
                           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
                         >
-                          <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-                          <XAxis dataKey="percentile" />
-                          <YAxis />
-                          <Tooltip />
-                          <Area 
-                            type="monotone" 
-                            dataKey="frequency" 
-                            stroke="#4F46E5" 
-                            fill="#4F46E5" 
-                            fillOpacity={0.1} 
+                          <defs>
+                            <linearGradient id="colorFrequency" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.1}/>
+                              <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                            </linearGradient>
+                          </defs>
+                          <CartesianGrid 
+                            strokeDasharray="3 3" 
+                            stroke="#eee" 
+                            vertical={false}
+                          />
+                          <XAxis 
+                            dataKey="percentile" 
+                            axisLine={false}
+                            tickLine={false}
+                            tick={{ fill: '#666' }}
+                            domain={[0, 100]}
+                            ticks={[0, 25, 50, 75, 100]}
+                          />
+                          <YAxis 
+                            hide={true}
+                          />
+                          <Tooltip
+                            content={({ active, payload }) => {
+                              if (active && payload && payload.length) {
+                                return (
+                                  <div className="bg-white p-3 border rounded shadow">
+                                    <p className="text-lg font-semibold">{payload[0].payload.percentile}</p>
+                                    <p className="text-sm text-violet-600">
+                                      numberOfStudent: {Math.round(payload[0].value / 10)}
+                                    </p>
+                                  </div>
+                                );
+                              }
+                              return null;
+                            }}
+                          />
+                          <ReferenceLine
+                            x={parseInt(formData.percentile)}
+                            stroke="#666"
+                            strokeDasharray="3 3"
+                            label={
+                              <text
+                                x={200}
+                                y={150}
+                                textAnchor="middle"
+                                fill="#666"
+                                fontSize={12}
+                              >
+                                your percentile
+                              </text>
+                            }
+                          />
+                          <Area
+                            type="monotone"
+                            dataKey="frequency"
+                            stroke="#8884d8"
+                            fillOpacity={1}
+                            fill="url(#colorFrequency)"
+                            dot={{
+                              stroke: '#8884d8',
+                              strokeWidth: 2,
+                              r: 3,
+                              fill: 'white'
+                            }}
                           />
                         </AreaChart>
                       </ResponsiveContainer>
